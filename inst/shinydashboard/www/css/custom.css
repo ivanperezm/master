@@ -1,0 +1,76 @@
+/* Background del dashboard */
+.content-wrapper,
+.right-side {
+  background-color: #fff;
+}
+
+/* Sangria en el menu lateral izquierdo */
+.sidebar-menu .treeview-menu {
+  padding-left: 10px;
+}
+
+/* Oculta la cabezara del dropdownmenu */
+.navbar-nav>.messages-menu>.dropdown-menu>li.header, .navbar-nav>.notifications-menu>.dropdown-menu>li.header, .navbar-nav>.tasks-menu>.dropdown-menu>li.header {
+    display: none !important;
+}
+
+/* Reduce el ancho del dropdownmenu */
+.navbar-nav>.messages-menu>.dropdown-menu, .navbar-nav>.notifications-menu>.dropdown-menu, .navbar-nav>.tasks-menu>.dropdown-menu {
+    width: 160px;
+}
+
+/* Reduce y posiciona los iconos del dropdownmenu */
+.navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > .glyphicon, .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > .fa, .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a > .ion {
+    font-size: 20px;
+    width: 20px;
+}
+
+/* Radio de 3px al modal del login */
+.modal-content {
+    /*background: url(http://www.shearwaterdental.com/dental-chair/uploads/2017/05/Shearwater-login-background-1150x719.jpg);*/
+    border-radius: 3px;
+}
+
+/* Ancho del modal del login */
+.modal-dialog {
+    width: 500px;
+}
+
+/* Titulo del modal del login */
+.modal-title {
+  text-align:center;
+  font-weight: 300;
+  font-size: 44px;
+}
+
+/* Caracteristicas del username y password */
+#userName, #passwd {
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  display: block;
+}
+
+/* Caracteristicas de los botones del login */
+#goBackModal, #checkLogin, #closeModal, #btLoginModal {
+  vertical-align: middle;
+  height: 40px;
+  width: 98%;
+  font-size: 18px;
+}
+
+/* Color del texto del boton primary */
+.btn-primary {
+    color: #fff;
+}
+
+#error {
+    color: #BF616A;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+
+
