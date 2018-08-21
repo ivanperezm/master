@@ -65,6 +65,7 @@
     color: #fff;
 }
 
+/* Color del mensaje de error cuando no coinciden las credenciales */
 #error {
     color: #BF616A;
     font-size: 18px;

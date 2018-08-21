@@ -1,10 +1,4 @@
 jscode <- '
-// Codigo para expandir Boxes
-shinyjs.collapse = function(boxid) {
-$("#" + boxid).closest(".box").find("[data-widget=collapse]").click();
-}
-//
-
 // Codigo para manejar las cookies, para continuar logeado cuando se refresca la pagina
 shinyjs.getcookie = function(params) {
   var user = Cookies.get("user_af");

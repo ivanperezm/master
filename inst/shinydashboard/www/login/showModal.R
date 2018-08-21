@@ -92,17 +92,14 @@ loginModalMenu <- function(message = ""){
         a( "Sign up", href="#shiny-tab-register","data-toggle"="tab")
       )
     ),
-    # fluidRow(
-    #   column(12,
     br(),
-             tags$div(id = "error", align = "center", message),
-    #)),
+    tags$div(id = "error", align = "center", message),
     easyClose = FALSE,
     footer = NULL
   )
 }
 
-# parace que es cookies
+# Codigo de cookies
 getLoginInput <- function(type){
   # Thu Jul 26 13:32:14 2018 ------------------------------
   ans <- "--"
@@ -121,7 +118,6 @@ getLoginInput <- function(type){
 
 # check credentials when user logs in
 observeEvent(input$checkLogin, {
-  
   mssg = "Invalid Username or Password"
   val  <- validateEmail(trimws(input$userName))
   inputPass <- trimws(input$passwd)
@@ -148,6 +144,7 @@ observeEvent(input$checkLogin, {
   
 })
 
+# Verifica las credenciales
 checkCredentials <- function(Username, Password){
   # Username <- isolate(trimws(input$userName))
   # Password <- digest(isolate(inputPass), "sha256", serialize = FALSE)
@@ -171,63 +168,32 @@ checkCredentials <- function(Username, Password){
       USER$org <- data1[Id.username, "organization"]
       USER$country <- data1[Id.username, "country"]
       
-      
       js$setcookie(Username, Password)
-      
-      
     }
   }
 }
 
-###########################################################################################################
 # to perform when a user logs in
-###########################################################################################################
 observe({
   if(USER$Logged == TRUE) {
-    
-    
     removeModal()
     
     session$userData$logged <- TRUE
     session$userData$userId <- USER$id
     
     # menu to be shown with hidap network options when the users logs in
-    
     output$help <- renderText("Help")
     output$userLoggedText <- renderText(paste0("Account: ", USER$fname))
     
-    # output$menuUser <- renderMenu({
-    #   sidebarMenu(#id ="networkMenu",
-    #               # fluidRow(
-    #               #   column(
-    #               #     width = 12,
-    #               #     uiOutput("userLoggedText"),
-    #               #     "Connected"
-    #               #   )
-    #               # ),
-    #               menuItem("My account", icon = icon("address-book-o"),
-    #                        menuSubItem("My Profile", tabName = "userProfile", icon = icon("user")),
-    #                        menuSubItem("Change Password", tabName = "changePass", icon = icon("lock"))
-    #               )#,
-    #               # fluidRow(
-    #               #   column(
-    #               #     width = 12,
-    #               #     actionButton("btLogOut", "Log Out")
-    #               #   )
-    #               # )
-    #   )
-    # })
-    
-    output$menu44 <- renderMenu({
-      dropdownMenu(#id ="networkMenu",
+    output$menuHeader <- renderMenu({
+      dropdownMenu(
         headerText = "...",
         icon = icon("user", "fa-lg"),
         badgeStatus = NULL,
         tags$li(
           class = "dropdown",
-          a(#icon("user fa"),
+          a(
             icon("male"),
-            #img(src = "https://cdn2.iconfinder.com/data/icons/people-80/96/Picture6-16.png"),
             "Profile",
             onclick = "openTab('userProfile')",
             href = NULL,
@@ -238,7 +204,6 @@ observe({
           class = "dropdown",
           a(
             icon("key"),
-            #img(src = "https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/lock-24-16.png"),
             "Authentication",
             onclick = "openTab('changePass')",
             href = NULL,
@@ -247,19 +212,12 @@ observe({
         ),
         tags$li(
           class = "dropdown",
-          actionLink("btLogOut", "Log Out", icon = icon("sign-out"))#style='.fa { font-size: 2px; }', icon = icon("user")) #icon = icon("user", "fa-lg"))
-          # a(
-          #   img(src = "https://cdn2.iconfinder.com/data/icons/flat-ui-icons-24-px/24/lock-24-20.png"),
-          #   "Log Out",
-          #   onclick = "btLogOut",
-          #   href = NULL,
-          #   style = "cursor: pointer;"
-          # )
+          actionLink("btLogOut", "Log Out", icon = icon("sign-out"))
         )
       )
     })
     
-    output$menu <- renderMenu({
+    output$menuSidebar <- renderMenu({
       sidebarMenu(
         menuItem("Home", tabName = "home", icon = icon("home"), selected = TRUE),
         menuItem("Menu Item 1", tabName = "menuItem1", icon = icon("minus-square")),
@@ -271,7 +229,6 @@ observe({
         )
       )
     })
-    
     
     output$registerMsg <- renderText("")
     
@@ -297,36 +254,9 @@ observe({
     
     hideTab(inputId = "tabs", target = "Foo")
     
-    # tags$li(actionButton("btLogIn", label = "Log In"),
-    #         class = "dropdown")
-    
-    # output$btLogInxx <- renderUI({
-    #   actionButton("btLogIn", label = "Log In")
-    # })
-    
-    # output$menuUser <- renderMenu({
-    #   sidebarMenu(#id ="networkMenu",
-    #               # fluidRow(
-    #               #   column(
-    #               #     width = 12,
-    #               #     "Hello, Guest",
-    #               #     br(),
-    #               #     "Not connected"
-    #               #   )
-    #               # ),
-    #               # fluidRow(
-    #               #   column(
-    #               #     width = 12,
-    #               #     actionButton("btLogIn", "Log in")
-    #               #   )
-    #               # )
-    #   )
-    # })
-    #output$help <- renderText("Help")
     output$userLoggedText <- renderText("Guest")
     
-    
-    output$menu44 <- renderMenu({
+    output$menuHeader <- renderMenu({
       dropdownMenu(
         headerText = "...",
         icon = icon("user-times", "fa-lg"),
@@ -338,8 +268,7 @@ observe({
       )
     })
     
-    
-    output$menu <- renderMenu({
+    output$menuSidebar <- renderMenu({
       sidebarMenu(
         menuItem("Home", tabName = "home", selected = TRUE)
       )
@@ -361,5 +290,3 @@ observeEvent(input$btLogOut, {
   USER$Logged <- FALSE
   showModal(loginModalMenu())
 })
-
-
